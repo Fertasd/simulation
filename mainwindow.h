@@ -12,6 +12,6 @@ public:
 private:
 	SimulationManager simulationManager;		/* adds a simulation manager object to the window */
 	//std::shared_ptr<Simulation> simulation;    /* declares a pointer to a simulation */
-	QTimer* timer;								/* declares a timer object */
 	SimulationSession session;
+	bool shouldSimulate;
 };

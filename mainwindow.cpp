@@ -11,11 +11,13 @@ struct overload<_ReturnT(_ArgsT...)>
 };
 
 MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent), timer(new QTimer(this))
+	: QMainWindow(parent), shouldSimulate(false)
 {   
 	setWindowTitle("Simulation");			/* initializes the main window with a timer built in,
 											  UC: sets initial size and window title */
 	resize(800, 600);
+
+	auto* timer = new QTimer(this);
 
 	auto* mainPanel = new QWidget;
 	setCentralWidget(mainPanel);
@@ -27,12 +29,14 @@ MainWindow::MainWindow(QWidget *parent)
 	layout->addWidget(image, 1);			/* creates a surface(ImageWidget) for displaying images,
 											  adds it to the layout with weighing 1(helps with resizing issues) */
 	connect(&session, &SimulationSession::simulationChanged, [=](const std::shared_ptr<Simulation>& sim){
+		shouldSimulate = false;
 		timer->stop();
 		image->setSimulation(sim);
 		image->update();
 	});
 
 	connect(&session, &SimulationSession::displayWidthChanged, [=](size_t dpw){
+		shouldSimulate = false;
 		timer->stop();
 		image->setDisplayWidth(dpw);
 		image->update();
@@ -92,19 +96,23 @@ MainWindow::MainWindow(QWidget *parent)
 												timer appropriately and adds it to the display, then displays it */
 
 	connect(timer, &QTimer::timeout, [=]{
-			for (size_t i = 0; i < session.renderFrameSkip(); ++i)
-			{
-				session.simulation()->step(); /* do a certain number of simulation steps */
-				QApplication::processEvents();
-			}
-			image->update();		/* display the current state of the simulation */
+		timer->stop();
+		for (size_t i = 0; i < session.renderFrameSkip() && shouldSimulate; ++i)
+		{
+			session.simulation()->step(); /* do a certain number of simulation steps */
+			QApplication::processEvents();
+		}
+		image->update();		/* display the current state of the simulation */
+		if (shouldSimulate)
+			timer->start();
 	});
 	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t delay){ timer->setInterval(static_cast<int>(delay)); });
-	connect(startButton, &QPushButton::clicked, [=]{ if (session.simulation()) timer->start(); });		/* on clicking the start and stop buttons, the timer starts and stops */
-	connect(pauseButton, &QPushButton::clicked, timer, &QTimer::stop);
+	connect(startButton, &QPushButton::clicked, [=]{ if (session.simulation()) { shouldSimulate = true; timer->start(); } });		/* on clicking the start and stop buttons, the timer starts and stops */
+	connect(pauseButton, &QPushButton::clicked, [=]{ shouldSimulate = false; timer->stop(); });
 	connect(resetButton, &QPushButton::clicked, [=]{
 		if (session.simulation())
 		{
+			shouldSimulate = false;
 			timer->stop();
 			session.simulation()->reset();
 			image->update();
