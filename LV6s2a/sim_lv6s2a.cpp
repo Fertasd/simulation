@@ -2,7 +2,7 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_LV6s2a::Sim_LV6s2a(size_t width) : Simulation(width), rng(2593), csok(width), nov(width), data2(width * width),
+Sim_LV6s2a::Sim_LV6s2a(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),
 	pm{ {0, 1, 1, 2, 3, 3}, /* UC: the payoff matrix is defined here */
 		{3, 0, 1, 1, 2, 3},
 		{3, 3, 0, 1, 1, 2},

@@ -2,7 +2,7 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_NM::Sim_NM(size_t width) : Simulation(width), rng(2593), csok(width), nov(width), data2(width * width),pos(width*width),
+Sim_NM::Sim_NM(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),pos(width*width),
 	pm{ {0.0, tempt},		/* UC: define the payoff matrix here */
 		{0.0, 1.0}}
 {	/* upon the creation of an object of this class, the following happens: */

@@ -2,7 +2,7 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_pd3s::Sim_pd3s(size_t width) : Simulation(width), rng(2593), csok(width), nov(width), data2(width * width),
+Sim_pd3s::Sim_pd3s(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),
 	pm{ { 0.0, tempt, 0.0},
 		{0.0, 1.0, 1.0},
 		{-q, 1.0 - q, 1.0 - q}}

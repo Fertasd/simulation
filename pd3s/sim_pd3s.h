@@ -29,7 +29,7 @@ private:
 	SimParameter K{"K", 0.5};            /* temptation to choose defection, this game uses tempt instead  */
 	const SimParameter tempt{"tempt", 1.0005, "Temptation to choose defection"};
 	static constexpr uint8_t zz = 4;			/* number of immediate neighbors */
-	const SimParameter Temp{"Temp", 0.1, "Temperature(noise, possibility of trembles)"};
+	const SimParameter Temp{"Temp", 0.1, "Temperature (noise, possibility of trembles)"};
 	const SimParameter q{"q", 0.002, "q... a parameter in the payoff matrix"};
 	const SimParameter xx{"xx", 0.0, "Probability of interacting with far neighbors"};
 	const SimParameter yy{"yy", 0.0, "Probability of spontaneously choosing a random strategy"};

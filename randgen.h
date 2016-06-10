@@ -1,6 +1,7 @@
 #pragma once
 
 #include <atomic>
+#include <chrono>
 #include <limits>
 
 /******* RANDOM NUMBER GENERATOR BY ZIFF **********/
@@ -9,7 +10,7 @@
 class RandomGenerator
 {
 public:
-	RandomGenerator(int32_t seed);
+	RandomGenerator(int32_t seed = static_cast<int32_t>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()));
 
 	int32_t next();
 	double nextNormal();

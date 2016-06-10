@@ -2,7 +2,7 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_tox2x::Sim_tox2x(size_t width) : Simulation(width), rng(2593), csok(width), nov(width), data2(width * width),
+Sim_tox2x::Sim_tox2x(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),
 	pm{ {0, 4, 5, 1, 1, 3, 2, 3, 2}, /* UC: the payoff matrix is defined here */
 		{5, 0, 4, 3, 1, 1, 2, 2, 3},
 		{4, 5, 0, 1, 3, 1, 3, 2, 2},

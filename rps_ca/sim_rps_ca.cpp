@@ -2,7 +2,7 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_RPS_CA::Sim_RPS_CA(size_t width) : Simulation(width), rng(2593), csok(width), nov(width), data2(width * width),
+Sim_RPS_CA::Sim_RPS_CA(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),
 	pm{ {0.0, 1.0, -1.0},	/* UC: define the payoff matrix here */
 		{-1.0, 0.0, 1.0},
 		{1.0, -1.0, 0.0}}
