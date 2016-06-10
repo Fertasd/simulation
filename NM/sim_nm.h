@@ -28,7 +28,7 @@ private:
 	static constexpr double tempt = 1.1;           /* UC: temptation to choose defection  */
 	std::vector<size_t> csok, nov;					/* declaration of vectors used to resolve indexing issues */
 	std::vector<uint8_t> data2;					/* declaration of a temporary structure that keeps track changes in a step */
-	std::vector<uint32_t> pos;					/* declaration of another temporary structure, will hopefully be dealt with
+	std::vector<std::atomic<uint32_t>> pos;					/* declaration of another temporary structure, will hopefully be dealt with
 												  soon as it's from the old code and is unnecessary */
 	const double pm[Ns][Ns];							/* declaration of the payoff matrix */
 };

@@ -68,7 +68,7 @@ void Sim_LV6s2a::step()		/* defines a simulation step */
 			//Nst[s1]++;
 			//Nst[s2]--;
 			break;
-		case 2: r = rng.next()/rng.RIMAX;
+		case 2: r = rng.nextNormal();
 			if (r<Px) {
 				at(i1, j1) = s2;
 				at(i2, j2)=s1;

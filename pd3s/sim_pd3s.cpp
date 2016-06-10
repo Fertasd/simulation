@@ -41,7 +41,7 @@ void Sim_pd3s::step()		/* defines a simulation step */
 {
 	auto NeS = width()*width();
 
-	//#pragma omp parallel for
+	#pragma omp parallel for
 	for(size_t ii=0; ii<NeS; ii++)		/* begins changes */
 	{
 		auto ix = (int) (rng.next() % width());

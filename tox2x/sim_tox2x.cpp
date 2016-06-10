@@ -51,13 +51,11 @@ size_t Sim_tox2x::displayWidth() const
 
 void Sim_tox2x::step()		/* defines a simulation step */
 {
-	//#pragma omp parallel for
+	#pragma omp parallel for
 	for (size_t eMCS = 0; eMCS < width(); eMCS++) {/* begins changes */
-		//auto random = rng.nextSync<6>();
-		//size_t ri = 0;
-		auto i1 = /*random[ri++]*/ rng.next() % width();
-		auto j1 = /*random[ri++]*/ rng.next() % width();
-		int neighbor = /*random[ri++]*/ rng.next() % 4;
+		auto i1 = rng.next() % width();
+		auto j1 = rng.next() % width();
+		int neighbor = rng.next() % 4;
 		auto i2 = 0, j2 = 0;
 		switch (neighbor) {
 		case 0:  i2 = nov[i1];   j2 = j1;        break;
@@ -76,18 +74,18 @@ void Sim_tox2x::step()		/* defines a simulation step */
 			break;
 		case 2: at(i1, j1) = s2;
 			break;
-		case 3: r = /*random[ri++]*/ rng.next()/rng.RIMAX;
+		case 3: r = rng.nextNormal();
 			if (r<Px) {
 				at(i1, j1) = s2;
 				at(i2, j2) = s1;
 			}
 			break;
-		case 4: r = /*random[ri++]*/ rng.next()/rng.RIMAX;
+		case 4: r = rng.nextNormal();
 			if (r<alfa) {
 				at(i2, j2) = s1;
 			}
 			break;
-		case 5: r = /*random[ri++]*/ rng.next()/rng.RIMAX;
+		case 5: r = rng.nextNormal();
 			if (r<alfa) {
 				at(i1, j1) = s2;
 			}

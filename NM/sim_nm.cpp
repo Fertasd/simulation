@@ -36,6 +36,7 @@ uint32_t Sim_NM::animationDelay() const
 }
 void Sim_NM::step()		/* defines a simulation step */
 {
+	#pragma omp parallel for collapse(2)
 	for (size_t i = 0; i < width(); i++) {/* begins changes */
 		for (size_t j = 0; j < width(); j++) {
 			auto s0 = at(i,j);
@@ -55,11 +56,11 @@ void Sim_NM::step()		/* defines a simulation step */
 			pos[i*width()+j] += pm[s0][sn]; pos[in*width()+jn] += pm[sn][s0];
 		}
 	}
-
+	#pragma omp parallel for collapse(2)
 	for (size_t i = 0; i < width(); i++) {
 		for (size_t j = 0; j < width(); j++) {
 			data2[i*width()+j] = at(i,j);
-			auto po1 = pos[i*width()+j], po2 = po1;
+			uint32_t po1 = pos[i*width()+j], po2 = po1;
 			auto in = i, jn = nov[j];
 			po2 = pos[in*width()+jn];
 			if (po2>po1) { po1 = po2; data2[i*width()+j] = at(in,jn); }
