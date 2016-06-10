@@ -15,11 +15,6 @@ Sim_NM::Sim_NM(size_t width) : Simulation(width), rng(2593), csok(width), nov(wi
 	reset();		/* assigns a random strategy distribution to the simulation */
 }
 
-QString Sim_NM::name() const
-{
-	return "NM";		/* UC: returns the name of the simulation */
-}
-
 uint32_t Sim_NM::renderFrameSkip() const
 {
 	return 1;		/* UC: returns the frame skip of the simulation(how many steps are done in the background) */

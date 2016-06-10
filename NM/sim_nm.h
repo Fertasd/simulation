@@ -13,7 +13,7 @@ class Sim_NM : public Simulation
 {
 public:
 	Sim_NM(size_t width = 500);						/*UC: declares a simulation with given width */
-	QString name() const override;
+	constexpr static auto name() { return "NM"; }
 	uint32_t animationDelay() const override;
 	uint32_t renderFrameSkip() const override;
 	size_t displayWidth() const override;

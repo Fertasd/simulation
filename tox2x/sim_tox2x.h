@@ -14,7 +14,7 @@ class Sim_tox2x : public Simulation
 {
 public:
 	Sim_tox2x(size_t width = 500);						/*UC: declares a simulation with given width */
-	QString name() const override;
+	constexpr static auto name() { return "tox2x"; }
 	uint32_t animationDelay() const override;
 	uint32_t renderFrameSkip() const override;
 	size_t displayWidth() const override;

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <thread>
 #include <QMainWindow>
 #include "simulationmanager.h"
 #include "simulationsession.h"
@@ -15,5 +14,4 @@ private:
 	//std::shared_ptr<Simulation> simulation;    /* declares a pointer to a simulation */
 	QTimer* timer;								/* declares a timer object */
 	SimulationSession session;
-	std::thread worker;
 };

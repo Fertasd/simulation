@@ -92,11 +92,12 @@ MainWindow::MainWindow(QWidget *parent)
 												timer appropriately and adds it to the display, then displays it */
 
 	connect(timer, &QTimer::timeout, [=]{
-		//worker = std::thread([=]{
 			for (size_t i = 0; i < session.renderFrameSkip(); ++i)
+			{
 				session.simulation()->step(); /* do a certain number of simulation steps */
+				QApplication::processEvents();
+			}
 			image->update();		/* display the current state of the simulation */
-		//});
 	});
 	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t delay){ timer->setInterval(static_cast<int>(delay)); });
 	connect(startButton, &QPushButton::clicked, [=]{ if (session.simulation()) timer->start(); });		/* on clicking the start and stop buttons, the timer starts and stops */

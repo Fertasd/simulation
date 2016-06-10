@@ -17,11 +17,6 @@ Sim_pd3s::Sim_pd3s(size_t width) : Simulation(width), rng(2593), csok(width), no
 	reset();		/* assigns a random strategy distribution to the simulation */
 }
 
-QString Sim_pd3s::name() const
-{
-	return "PD3S";		/* UC: returns the name of the simulation */
-}
-
 uint32_t Sim_pd3s::renderFrameSkip() const
 {
 	return 1;		/* UC: returns the frame skip of the simulation(how many steps are done in the background) */

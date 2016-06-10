@@ -8,13 +8,29 @@
 /* UC: include the header(.h) file for any simulation you want to display here in a similar fashion
 	example: #include "newsim/sim_newsim.h" */
 
+template<typename SimT>
+class SW : public SimulationWrapper
+{
+public:
+	const char* name() const override
+	{
+		return SimT::name();
+	}
+	const std::shared_ptr<Simulation>& get() override
+	{
+		return _ptr ? _ptr : _ptr = std::make_shared<SimT>();
+	}
+private:
+	std::shared_ptr<Simulation> _ptr;
+};
+
 SimulationManager::SimulationManager(QObject *parent)
 	: QAbstractItemModel(parent), _data({
-										std::make_shared<Sim_LV6s2a>(),
-										std::make_shared<Sim_NM>(),
-										std::make_shared<Sim_pd3s>(),
-										std::make_shared<Sim_RPS_CA>(),
-										std::make_shared<Sim_tox2x>()
+										std::make_shared<SW<Sim_LV6s2a>>(),
+										std::make_shared<SW<Sim_NM>>(),
+										std::make_shared<SW<Sim_pd3s>>(),
+										std::make_shared<SW<Sim_RPS_CA>>(),
+										std::make_shared<SW<Sim_tox2x>>()
 										/* UC: add a similar line with the class name of the simulation
 										   you're adding to the display and have commas after all
 											but the last row, example:
@@ -55,5 +71,5 @@ QVariant SimulationManager::data(const QModelIndex &index, int role) const
 
 std::shared_ptr<Simulation> SimulationManager::getSimulation(size_t index) const
 {
-	return _data[index]; /* returns a pointer to the simulation with given index */
+	return _data[index]->get(); /* returns a pointer to the simulation with given index */
 }

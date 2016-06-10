@@ -29,11 +29,6 @@ Sim_tox2x::Sim_tox2x(size_t width) : Simulation(width), rng(2593), csok(width), 
 	reset();		/* assigns a random strategy distribution to the simulation */
 }
 
-QString Sim_tox2x::name() const
-{
-	return "tox2x";		/* UC: returns the name of the simulation */
-}
-
 uint32_t Sim_tox2x::animationDelay() const
 {
 	return 0;		/* UC: returns the animation delay of the simulation(how long it waits before displaying the next state, in ms) */

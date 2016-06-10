@@ -12,7 +12,7 @@ class Sim_RPS_CA : public Simulation
 {
 public:
 	Sim_RPS_CA(size_t width = 500);				/*UC: declares a simulation with given width */
-	QString name() const override;
+	constexpr static auto name() { return "RPS_CA"; }
 	uint32_t animationDelay() const override;
 	uint32_t renderFrameSkip() const override;
 	size_t displayWidth() const override;

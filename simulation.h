@@ -9,7 +9,7 @@ class Simulation						/* the parent class for all simulations */
 public:
 	explicit Simulation(size_t width);					/* initializes a simulation */
 	virtual ~Simulation();
-	virtual QString name() const = 0;					/* virtual declarations of the functions that give us the name,
+	/*virtual QString name() const = 0;					 virtual declarations of the functions that give us the name,
 														  animation delay(time between picture updates) and
 														  render frame skip(how many steps the simulation runs before
 														  updating the picture) of the simulation */

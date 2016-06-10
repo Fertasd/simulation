@@ -33,10 +33,10 @@ void ImageWidget::paintEvent(QPaintEvent*)		/* defines what happens when the dis
 
 	QPainter painter(this); /* creates a painter object(QPainter) that fills every square with the color corresponding to its strategy */
 	//for (size_t i = 0; i < _simulation->displayWidth(); ++i)
-	for (int i = 0; i < _dpwidth; ++i)
+	for (int i = 0; i < static_cast<int>(_dpwidth); ++i)
 	{
 		//for (size_t j = 0; j < _simulation->displayWidth(); ++j)
-		for (int j = 0; j < _dpwidth; ++j)
+		for (int j = 0; j < static_cast<int>(_dpwidth); ++j)
 		{
 			painter.fillRect(j*step + square.x(), i*step + square.y(), step, step,_simulation->palette()[_simulation->at(i,j)]);
 		}

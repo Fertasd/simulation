@@ -4,6 +4,13 @@
 #include <QAbstractItemModel>
 #include "simulation.h"
 
+class SimulationWrapper
+{
+public:
+	virtual const char* name() const = 0;
+	virtual const std::shared_ptr<Simulation>& get() = 0;
+};
+
 class SimulationManager : public QAbstractItemModel			/* class for managing simulations */
 {
 	Q_OBJECT
@@ -16,6 +23,6 @@ public:
 	QVariant data(const QModelIndex &index, int role) const override; /* declares a structure that keeps track of the simulations */
 	std::shared_ptr<Simulation> getSimulation(size_t index) const; /* declares a pointer to a simulation with a given index */
 private:
-	std::vector<std::shared_ptr<Simulation>> _data;					/* initializes a structure that keeps track of the simulations
+	std::vector<std::shared_ptr<SimulationWrapper>> _data;					/* initializes a structure that keeps track of the simulations
 																		using their pointers*/
 };
