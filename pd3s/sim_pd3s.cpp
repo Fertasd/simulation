@@ -44,8 +44,8 @@ void Sim_pd3s::step()		/* defines a simulation step */
 	#pragma omp parallel for
 	for(size_t ii=0; ii<NeS; ii++)		/* begins changes */
 	{
-		auto ix = (int) (rng.next() % width());
-		auto jx = (int) (rng.next() % width());
+		auto ix = rng.next() % width();
+		auto jx = rng.next() % width();
 		auto SX = at(ix,jx);
 		auto ri = rng.next() % zz;
 		auto ip = nov[ix], jp = nov[jx];
@@ -117,7 +117,7 @@ void Sim_pd3s::step()		/* defines a simulation step */
 			}
 			r = rng.nextNormal();
 			if (r<yy) {
-				at(ix,jx) = (int) rng.next() % Ns;
+				at(ix,jx) = rng.next() % Ns;
 			}
 		} /* done with changes */
 

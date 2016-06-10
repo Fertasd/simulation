@@ -29,14 +29,14 @@ void ImageWidget::paintEvent(QPaintEvent*)		/* defines what happens when the dis
 	const int minside = min(width(), height());
 	QRect square((width() - minside)/2,0, minside, minside);
 	//const int step = minside/(int)_simulation->displayWidth();
-	const int step = minside/(int)_dpwidth;
+	const int step = minside/static_cast<int>(_dpwidth);
 
 	QPainter painter(this); /* creates a painter object(QPainter) that fills every square with the color corresponding to its strategy */
 	//for (size_t i = 0; i < _simulation->displayWidth(); ++i)
-	for (size_t i = 0; i < _dpwidth; ++i)
+	for (int i = 0; i < _dpwidth; ++i)
 	{
 		//for (size_t j = 0; j < _simulation->displayWidth(); ++j)
-		for (size_t j = 0; j < _dpwidth; ++j)
+		for (int j = 0; j < _dpwidth; ++j)
 		{
 			painter.fillRect(j*step + square.x(), i*step + square.y(), step, step,_simulation->palette()[_simulation->at(i,j)]);
 		}

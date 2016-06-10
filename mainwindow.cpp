@@ -66,27 +66,27 @@ MainWindow::MainWindow(QWidget *parent)
 	dper->setMinimum(60);
 	dper->setMaximum(500);
 
-	connect(dper, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.displayWidth(newValue); });
-	connect(&session, &SimulationSession::displayWidthChanged, [=](size_t newValue){ dper->setValue(newValue); });
+	connect(dper, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.displayWidth(static_cast<size_t>(newValue)); });
+	connect(&session, &SimulationSession::displayWidthChanged, [=](size_t newValue){ dper->setValue(static_cast<int>(newValue)); });
 
 	auto* delayer = new QSpinBox;
 	formLayout->addRow("Animation delay", delayer);
 	delayer->setMinimum(0);
 	delayer->setMaximum(3600000);
 
-	connect(delayer, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.animationDelay(newValue); });
-	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t newValue){ delayer->setValue(newValue); });
+	connect(delayer, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.animationDelay(static_cast<uint32_t>(newValue)); });
+	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t newValue){ delayer->setValue(static_cast<int>(newValue)); });
 
 	auto* skipper = new QSpinBox;
 	formLayout->addRow("Frame skip", skipper);
 	skipper->setMinimum(1);
 	skipper->setMaximum(50000);
 
-	connect(skipper, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.renderFrameSkip(newValue); });
-	connect(&session, &SimulationSession::renderFrameSkipChanged, [=](uint32_t newValue){ skipper->setValue(newValue); });
+	connect(skipper, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.renderFrameSkip(static_cast<uint32_t>(newValue)); });
+	connect(&session, &SimulationSession::renderFrameSkipChanged, [=](uint32_t newValue){ skipper->setValue(static_cast<int>(newValue)); });
 
 	connect(simList->selectionModel(), &QItemSelectionModel::currentRowChanged, [=](const QModelIndex &current, const QModelIndex&){
-		session.simulation(simulationManager.getSimulation(current.row()));
+		session.simulation(simulationManager.getSimulation(static_cast<size_t>(current.row())));
 	});										/* a setup that links the selection of an item on the list to a series of events:
 											  stops the timer, creates a simulation of the corresponding type, adjusts the timer
 												timer appropriately and adds it to the display, then displays it */
@@ -98,7 +98,7 @@ MainWindow::MainWindow(QWidget *parent)
 			image->update();		/* display the current state of the simulation */
 		//});
 	});
-	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t delay){ timer->setInterval(delay); });
+	connect(&session, &SimulationSession::animationDelayChanged, [=](uint32_t delay){ timer->setInterval(static_cast<int>(delay)); });
 	connect(startButton, &QPushButton::clicked, [=]{ if (session.simulation()) timer->start(); });		/* on clicking the start and stop buttons, the timer starts and stops */
 	connect(pauseButton, &QPushButton::clicked, timer, &QTimer::stop);
 	connect(resetButton, &QPushButton::clicked, [=]{

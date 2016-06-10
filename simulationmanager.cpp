@@ -27,7 +27,7 @@ SimulationManager::SimulationManager(QObject *parent)
 
 QModelIndex SimulationManager::index(int row, int column, const QModelIndex &) const
 {
-	return createIndex(row, column, row);		/* used to call the index of elements */
+	return createIndex(row, column, static_cast<quintptr>(row));		/* used to call the index of elements */
 }
 
 QModelIndex SimulationManager::parent(const QModelIndex &) const
@@ -37,7 +37,7 @@ QModelIndex SimulationManager::parent(const QModelIndex &) const
 
 int SimulationManager::rowCount(const QModelIndex &) const
 {
-	return _data.size();						/* returns the length of the list of simulations */
+	return static_cast<int>(_data.size());						/* returns the length of the list of simulations */
 }
 
 int SimulationManager::columnCount(const QModelIndex &) const
@@ -49,7 +49,7 @@ QVariant SimulationManager::data(const QModelIndex &index, int role) const
 {
 	if (role == Qt::DisplayRole)				/* if called to display, returns the name of the simulation with a given index,
 												  otherwise returns invalid(default) */
-		return _data[index.row()]->name();
+		return _data[static_cast<size_t>(index.row())]->name();
 	return QVariant();
 }
 

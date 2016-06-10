@@ -61,7 +61,7 @@ void Sim_RPS_CA::step()				/* defines a simulation step */
 			auto x2 = exp(PX2 / K);
 			auto xs = x0 + x1 + x2;
 			auto r0 = x0 / xs, r1 = x1 / xs;
-			auto sr = 1;
+			uint8_t sr = 1;
 			//auto r = (x / y);
 			double h = rng.nextNormal();
 			if (h<r0) { sr = 0; }
