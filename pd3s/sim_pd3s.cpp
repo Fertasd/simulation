@@ -44,12 +44,10 @@ void Sim_pd3s::step()		/* defines a simulation step */
 	//#pragma omp parallel for
 	for(size_t ii=0; ii<NeS; ii++)		/* begins changes */
 	{
-		auto random = rng.nextSync<9>();
-
-		auto ix = (int) (random[0] % width());
-		auto jx = (int) (random[1] % width());
+		auto ix = (int) (rng.next() % width());
+		auto jx = (int) (rng.next() % width());
 		auto SX = at(ix,jx);
-		auto ri = random[2] % zz;
+		auto ri = rng.next() % zz;
 		auto ip = nov[ix], jp = nov[jx];
 		//auto iq = nov[ip], jq = nov[jp];
 		auto im = csok[ix], jm = csok[jx];
@@ -63,10 +61,10 @@ void Sim_pd3s::step()		/* defines a simulation step */
 		} /* case neighbor */
 
 
-		auto r = (random[3] / rng.RIMAX);
+		auto r = rng.nextNormal();
 		if (r<xx) {
-			iy = (random[4] % width());
-			jy = (random[5] % width());
+			iy = rng.next() % width();
+			jy = rng.next() % width();
 
 		}
 		auto SY = at(iy,jy);
@@ -113,13 +111,13 @@ void Sim_pd3s::step()		/* defines a simulation step */
 			PY+=pm[SY][s];
 
 			auto prd = 1.0 / (1 + exp(-(PY - PX)/Temp));
-			r = (random[6] / rng.RIMAX);
+			r = rng.nextNormal();
 			if ( r<prd) {
 				at(ix,jx) = SY;
 			}
-			r = ((double) random[7] / rng.RIMAX);
+			r = rng.nextNormal();
 			if (r<yy) {
-				at(ix,jx) = (int) random[8] % Ns;
+				at(ix,jx) = (int) rng.next() % Ns;
 			}
 		} /* done with changes */
 
