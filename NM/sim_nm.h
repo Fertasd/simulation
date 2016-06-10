@@ -14,6 +14,7 @@ class Sim_NM : public Simulation
 public:
 	Sim_NM(size_t width = 500);						/*UC: declares a simulation with given width */
 	constexpr static auto name() { return "NM"; }
+	std::vector<SimParameter> parameters() override;
 	uint32_t animationDelay() const override;
 	uint32_t renderFrameSkip() const override;
 	size_t displayWidth() const override;
@@ -25,7 +26,7 @@ public:
 private:
 	RandomGenerator rng;							/* initializes a random number generator */
 	static constexpr uint8_t Ns = 2;               /* number of species/strategies               */
-	static constexpr double tempt = 1.1;           /* UC: temptation to choose defection  */
+	const SimParameter tempt{"tempt", 1.1, "Temptation to choose defection"};
 	std::vector<size_t> csok, nov;					/* declaration of vectors used to resolve indexing issues */
 	std::vector<uint8_t> data2;					/* declaration of a temporary structure that keeps track changes in a step */
 	std::vector<std::atomic<uint32_t>> pos;					/* declaration of another temporary structure, will hopefully be dealt with

@@ -17,6 +17,11 @@ Sim_RPS_CA::Sim_RPS_CA(size_t width) : Simulation(width), rng(2593), csok(width)
 	reset();								/* assigns a random strategy distribution to the simulation */
 }
 
+std::vector<SimParameter> Sim_RPS_CA::parameters()
+{
+	return{K};
+}
+
 uint32_t Sim_RPS_CA::renderFrameSkip() const
 {
 	return 1;						/* UC: returns the frame skip of the simulation(how many steps are done in the background) */

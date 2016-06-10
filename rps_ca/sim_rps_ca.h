@@ -13,6 +13,7 @@ class Sim_RPS_CA : public Simulation
 public:
 	Sim_RPS_CA(size_t width = 500);				/*UC: declares a simulation with given width */
 	constexpr static auto name() { return "RPS_CA"; }
+	std::vector<SimParameter> parameters() override;
 	uint32_t animationDelay() const override;
 	uint32_t renderFrameSkip() const override;
 	size_t displayWidth() const override;
@@ -24,7 +25,7 @@ public:
 private:
 	RandomGenerator rng;						/* initializes a random number generator */
 	static constexpr uint8_t Ns = 3;           /* number of species               */
-	static constexpr double K = 0.5;           /* UC: temptation to choose defection, not used in this game  */
+	const SimParameter K{"K", 0.5, "temperature"};
 	std::vector<size_t> csok, nov;				/* declaration of vectors used to resolve indexing issues */
 	std::vector<uint8_t> data2;					/* declaration of a temporary structure that keeps track changes in a step */
 	const double pm[Ns][Ns];							/* declaration of the payoff matrix */

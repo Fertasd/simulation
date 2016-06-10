@@ -23,6 +23,11 @@ Sim_LV6s2a::Sim_LV6s2a(size_t width) : Simulation(width), rng(2593), csok(width)
 	reset();		/* assigns a random strategy distribution to the simulation */
 }
 
+std::vector<SimParameter> Sim_LV6s2a::parameters()
+{
+	return {K, Px};
+}
+
 uint32_t Sim_LV6s2a::animationDelay() const
 {
 	return 0;		/* UC: returns the animation delay of the simulation(how long it waits before displaying the next state, in ms) */

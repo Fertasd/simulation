@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     tox2x/sim_tox2x.cpp \
     simulationmanager.cpp \
     simulationsession.cpp \
-    randgen.cpp
+    randgen.cpp \
+    simparameterwidget.cpp
 
 HEADERS  += \
     randgen.h \
@@ -38,7 +39,9 @@ HEADERS  += \
     LV6s2a/sim_lv6s2a.h \
     tox2x/sim_tox2x.h \
     simulationmanager.h \
-    simulationsession.h
+    simulationsession.h \
+    simparameterwidget.h \
+    overloadselector.h
 
 DISTFILES += \
     ../The Promise.docx

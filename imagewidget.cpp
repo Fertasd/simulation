@@ -1,12 +1,8 @@
 #include "imagewidget.h"
 #include <QPainter>
 
-template<typename T>
-constexpr inline T min(T a, T b) { return a < b ? a : b; }	/* inline function for finding the minimum of two numbers */
-
 ImageWidget::ImageWidget(QWidget *parent) : QWidget(parent)
 {
-
 }
 
 void ImageWidget::setSimulation(const std::shared_ptr<Simulation> &sim)
@@ -26,7 +22,7 @@ void ImageWidget::paintEvent(QPaintEvent*)		/* defines what happens when the dis
 	if (!_simulation)			/* if there is no simulation, no painting occurs */
 		return;
 
-	const int minside = min(width(), height());
+	const int minside = std::min(width(), height());
 	QRect square((width() - minside)/2,0, minside, minside);
 	//const int step = minside/(int)_simulation->displayWidth();
 	const int step = minside/static_cast<int>(_dpwidth);

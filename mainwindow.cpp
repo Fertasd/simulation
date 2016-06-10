@@ -1,14 +1,8 @@
 #include "mainwindow.h"
 #include <QtWidgets>
 #include "imagewidget.h"
-
-template<typename _SignatureT> struct overload { };
-template<typename _ReturnT, typename... _ArgsT>
-struct overload<_ReturnT(_ArgsT...)>
-{
-	template<typename _ClassT>
-	inline constexpr static auto get(_ReturnT(_ClassT::*ptr)(_ArgsT...)){ return ptr; }
-};
+#include "simparameterwidget.h"
+#include "overloadselector.h"
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), shouldSimulate(false)
@@ -88,6 +82,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 	connect(skipper, overload<void(int)>::get(&QSpinBox::valueChanged), [=](int newValue){ session.renderFrameSkip(static_cast<uint32_t>(newValue)); });
 	connect(&session, &SimulationSession::renderFrameSkipChanged, [=](uint32_t newValue){ skipper->setValue(static_cast<int>(newValue)); });
+
+	auto* params = new SimParameterWidget;
+	buttonLayout->addWidget(params);
+	connect(&session, &SimulationSession::simulationChanged, [=]{ params->setSimulationParameters(session.simulation()->parameters()); });
 
 	connect(simList->selectionModel(), &QItemSelectionModel::currentRowChanged, [=](const QModelIndex &current, const QModelIndex&){
 		session.simulation(simulationManager.getSimulation(static_cast<size_t>(current.row())));
