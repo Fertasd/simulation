@@ -25,7 +25,7 @@ Sim_LV6s2a::Sim_LV6s2a(size_t width) : Simulation(width), csok(width), nov(width
 
 std::vector<SimParameter> Sim_LV6s2a::parameters()
 {
-	return {K, Px};
+	return {Px};
 }
 
 uint32_t Sim_LV6s2a::animationDelay() const

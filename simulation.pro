@@ -26,7 +26,13 @@ SOURCES += main.cpp\
     simulationmanager.cpp \
     simulationsession.cpp \
     randgen.cpp \
-    simparameterwidget.cpp
+    simparameterwidget.cpp \
+    socdil_mix_imit/sim_socdil_mix_imit.cpp \
+    socdil_mix_logit/sim_socdil_mix_logit.cpp \
+    socdil_lev_imit/sim_socdil_lev_imit.cpp \
+    socdil_lev_logit/sim_socdil_lev_logit.cpp \
+    LV4s1a/sim_lv4s1a.cpp \
+    coordtest/sim_coordtest.cpp
 
 HEADERS  += \
     randgen.h \
@@ -41,7 +47,13 @@ HEADERS  += \
     simulationmanager.h \
     simulationsession.h \
     simparameterwidget.h \
-    overloadselector.h
+    overloadselector.h \
+    socdil_mix_imit/sim_socdil_mix_imit.h \
+    socdil_mix_logit/sim_socdil_mix_logit.h \
+    socdil_lev_imit/sim_socdil_lev_imit.h \
+    socdil_lev_logit/sim_socdil_lev_logit.h \
+    LV4s1a/sim_lv4s1a.h \
+    coordtest/sim_coordtest.h
 
 DISTFILES += \
     ../The Promise.docx

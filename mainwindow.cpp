@@ -86,7 +86,6 @@ MainWindow::MainWindow(QWidget *parent)
 	auto* params = new SimParameterWidget;
 	buttonLayout->addWidget(params);
 	connect(&session, &SimulationSession::simulationChanged, [=]{ params->setSimulationParameters(session.simulation()->parameters()); });
-
 	connect(simList->selectionModel(), &QItemSelectionModel::currentRowChanged, [=](const QModelIndex &current, const QModelIndex&){
 		session.simulation(simulationManager.getSimulation(static_cast<size_t>(current.row())));
 	});										/* a setup that links the selection of an item on the list to a series of events:

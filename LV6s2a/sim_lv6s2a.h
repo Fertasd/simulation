@@ -27,7 +27,6 @@ public:
 private:
 	RandomGenerator rng;						/* initializes a random number generator */
 	static constexpr uint8_t Ns = 6;           /* number of species               */
-	const SimParameter K{"K", 0.5, "Temptation to choose defection, not used in this game."};
 	const SimParameter Px{"Px", 0.1, "Exchange rate between neutral pairs"};
 	//SimParameter Su = 2;				// sampling unit, currently unused
 	std::vector<size_t> csok, nov;				/* declaration of vectors used to resolve indexing issues */

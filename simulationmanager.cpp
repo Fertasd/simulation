@@ -4,6 +4,11 @@
 #include "pd3s/sim_pd3s.h"
 #include "rps_ca/sim_rps_ca.h"
 #include "tox2x/sim_tox2x.h"
+#include "socdil_mix_imit/sim_socdil_mix_imit.h"
+#include "socdil_mix_logit/sim_socdil_mix_logit.h"
+#include "socdil_lev_imit/sim_socdil_lev_imit.h"
+#include "socdil_lev_logit/sim_socdil_lev_logit.h"
+#include "coordtest/sim_coordtest.h"
 
 /* UC: include the header(.h) file for any simulation you want to display here in a similar fashion
 	example: #include "newsim/sim_newsim.h" */
@@ -30,7 +35,12 @@ SimulationManager::SimulationManager(QObject *parent)
 										std::make_shared<SW<Sim_NM>>(),
 										std::make_shared<SW<Sim_pd3s>>(),
 										std::make_shared<SW<Sim_RPS_CA>>(),
-										std::make_shared<SW<Sim_tox2x>>()
+										std::make_shared<SW<Sim_tox2x>>(),
+										std::make_shared<SW<Sim_socdil_mix_imit>>(),
+										std::make_shared<SW<Sim_socdil_mix_logit>>(),
+										std::make_shared<SW<Sim_socdil_lev_imit>>(),
+										std::make_shared<SW<Sim_socdil_lev_logit>>(),
+										std::make_shared<SW<Sim_coordtest>>()
 										/* UC: add a similar line with the class name of the simulation
 										   you're adding to the display and have commas after all
 											but the last row, example:
