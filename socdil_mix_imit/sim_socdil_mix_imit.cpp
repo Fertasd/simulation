@@ -102,4 +102,18 @@ size_t Sim_socdil_mix_imit::stepTargetNumber() const
 	return 50000;		/* returns the maximum number of steps, currently unused */
 }
 
+uint8_t Sim_socdil_mix_imit::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_socdil_mix_imit::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_socdil_mix_imit::bisect(SimParameter)
+{
+	return 0;
+}
 

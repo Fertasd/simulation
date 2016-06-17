@@ -49,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
 	buttonLayout->addWidget(pauseButton);					/* adds it to the vertical layout */
 	auto* resetButton = new QPushButton("Reset");			/* creates a button with a given name */
 	buttonLayout->addWidget(resetButton);					/* adds it to the vertical layout */
+	auto* bisectButton = new QPushButton("Bisection start");
+	buttonLayout->addWidget(bisectButton);
 
 	auto* simList = new QListView;							/* creates an object(QListView) for displaying the list */
 	buttonLayout->addWidget(simList);						/* adds it to the vertical layout */
@@ -115,4 +117,21 @@ MainWindow::MainWindow(QWidget *parent)
 			image->update();
 		}
 	}); /* connects the clicked() event of the reset button with a series of events: the timer stops, the simulation is reset and displayed */
+	connect(bisectButton, &QPushButton::clicked, [=]{
+		try
+		{
+			auto vallist = session.simulation()->bisectionAnalysis(session.simulation()->selectParameter1(), session.simulation()->selectParameter2());
+			QString retString = "dick message";
+			for (auto& val : vallist){
+				retString.append(QString::number(val.first));
+				retString.append(QString::number(val.second));
+			}
+			QMessageBox(QMessageBox::Information, "Results", retString).exec();
+		}
+		catch (std::runtime_error e)
+		{
+			QMessageBox(QMessageBox::Critical, "Runtime error", e.what()).exec();
+		}
+		}
+	);
 }

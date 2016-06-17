@@ -109,3 +109,17 @@ size_t Sim_tox2x::stepTargetNumber() const
 	return 50000;		/* returns the maximum number of steps, currently unused */
 }
 
+uint8_t Sim_tox2x::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_tox2x::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_tox2x::bisect(SimParameter)
+{
+	return 0;
+}

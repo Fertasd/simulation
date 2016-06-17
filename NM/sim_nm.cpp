@@ -118,3 +118,18 @@ size_t Sim_NM::stepTargetNumber() const
 {
 	return 50000;		/* returns the maximum number of steps, currently unused */
 }
+
+uint8_t Sim_NM::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_NM::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_NM::bisect(SimParameter)
+{
+	return 0;
+}

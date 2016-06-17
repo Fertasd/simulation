@@ -96,3 +96,18 @@ size_t Sim_LV6s2a::stepTargetNumber() const
 {
 	return 5000;		/* returns the maximum number of steps, currently unused */
 }
+
+uint8_t Sim_LV6s2a::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_LV6s2a::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_LV6s2a::bisect(SimParameter)
+{
+	return 0;
+}

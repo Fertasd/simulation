@@ -83,4 +83,18 @@ size_t Sim_socdil_lev_logit::stepTargetNumber() const
 	return 50000;		/* returns the maximum number of steps, currently unused */
 }
 
+uint8_t Sim_socdil_lev_logit::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_socdil_lev_logit::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_socdil_lev_logit::bisect(SimParameter)
+{
+	return 0;
+}
 

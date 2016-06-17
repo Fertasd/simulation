@@ -17,7 +17,7 @@ void SimParameterWidget::setSimulationParameters(std::vector<SimParameter> param
 	{
 		auto* paramBox = new QDoubleSpinBox;
 		paramBox->setToolTip(param.description());
-		paramBox->setMinimum(0);
+		paramBox->setMinimum(-5);
 		paramBox->setDecimals(4);
 		paramBox->setValue(param);
 		_layout->addRow(param.name(), paramBox);

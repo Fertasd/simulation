@@ -2,11 +2,16 @@
 
 /* UC stands for user-controlled, modify the values in these rows to tailor the simulation to your needs */
 
-Sim_socdil_lev_imit::Sim_socdil_lev_imit(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width),
-	pm{ {1 + e + d, -1 + e - d/*, w*T*/}, /* UC: the payoff matrix is defined here */
-		{-1 - e + d, 1 - e - d/*, w*R+(1-w)*S*/}/*,
-		{w*S, w*R+(1-w)*T, w*w*R+w*(1-w)*(T+S)}*/}
+Sim_socdil_lev_imit::Sim_socdil_lev_imit(size_t width) : Simulation(width), csok(width), nov(width), data2(width * width)
 {	/* upon the creation of an object of this class, the following happens: */
+	auto changedEvent = [=](double){
+		pm[0][0] = 1 + e +d; pm[0][1] = -1 + e -d;
+		pm[1][0] = -1 -e +d; pm[1][1] = 1 - e - d;
+	};
+	e.onChanged(changedEvent);
+	d.onChanged(changedEvent);
+	changedEvent(0);
+
 	for (size_t i = 0; i < width; i++) { nov[i] = i + 1; csok[i] = i - 1; }
 	nov[width - 1] = 0;   csok[0] = width - 1;		/* the index-resolving vectors get defined */
 
@@ -102,5 +107,19 @@ size_t Sim_socdil_lev_imit::stepTargetNumber() const
 	return 50000;		/* returns the maximum number of steps, currently unused */
 }
 
+uint8_t Sim_socdil_lev_imit::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_socdil_lev_imit::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_socdil_lev_imit::bisect(SimParameter)
+{
+	return 0;
+}
 
 

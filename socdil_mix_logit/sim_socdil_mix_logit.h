@@ -23,6 +23,9 @@ public:
 	size_t stepTargetNumber() const override;			/* declarations of overrides to these functions,
 														  allowing them to return values specific to
 														  this kind of simulation */
+	uint8_t bisectStep(SimParameter, double) override;
+	std::vector<QPair<double, double>> bisectionAnalysis(SimParameter, SimParameter) override;
+	double bisect(SimParameter) override;
 private:
 	RandomGenerator rng;						/* initializes a random number generator */
 	static constexpr uint8_t Ns = 3;           /* number of species/strategies               */

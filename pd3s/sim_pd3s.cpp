@@ -139,3 +139,18 @@ size_t Sim_pd3s::stepTargetNumber() const
 {
 	return 500000;		/* returns the maximum number of steps, currently unused */
 }
+
+uint8_t Sim_pd3s::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_pd3s::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_pd3s::bisect(SimParameter)
+{
+	return 0;
+}

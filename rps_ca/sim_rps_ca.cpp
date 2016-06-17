@@ -90,3 +90,18 @@ size_t Sim_RPS_CA::stepTargetNumber() const
 {
 	return 50000;   /* returns the maximum number of steps, currently unused */
 }
+
+uint8_t Sim_RPS_CA::bisectStep(SimParameter, double)
+{
+	return 0;
+}
+
+std::vector<QPair<double, double> > Sim_RPS_CA::bisectionAnalysis(SimParameter, SimParameter)
+{
+	return {};
+}
+
+double Sim_RPS_CA::bisect(SimParameter)
+{
+	return 0;
+}
